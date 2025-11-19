@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Barthô Burger & Food | Cardápio Digital</title>
+    <meta name="description" content="O melhor de Guaratuba. Hambúrgueres, Buffet de Hot Dog e Porções. Peça agora!">
+    <meta name="theme-color" content="#121212">
+        
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Barthô <span>Burger</span></div>
+            <button class="cart-icon-btn" onclick="openCart()">
+                🛒
+                <div id="cart-count" class="cart-badge hidden">0</div>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="home-section">
+            <div class="hero">
+                <div class="rating-badge">
+                    ⭐ 4.9 no Google
+                </div>
+                <h1>Barthô<br><span style="color:var(--primary-orange)">Burger & Food</span></h1>
+                <p style="margin-top:10px; color:#ddd">O melhor de Guaratuba</p>
+                <button onclick="navigateTo('menu-section')" style="margin-top:20px; padding:12px 30px; background:var(--primary-orange); color:black; font-weight:bold; border-radius:50px; font-size:1rem;">Fazer Pedido</button>
+            </div>
+
+            <div class="promo-banner" onclick="navigateTo('menu-section')">
+                <div class="promo-text">
+                    <h3>Buffet Dog Livre</h3>
+                    <p>Monte do seu jeito. À vontade!</p>
+                </div>
+                <div class="price-tag">R$ 36,90</div>
+            </div>
+
+            <h3 style="margin-bottom: 15px; border-left: 4px solid var(--accent-purple); padding-left: 10px;">Destaques</h3>
+            <div class="menu-grid" id="featured-grid">
+                </div>
+        </section>
+
+        <section id="menu-section" class="hidden" style="padding-top: 20px;">
+            <div class="search-bar">
+                🔍 <input type="text" id="search-input" placeholder="Buscar lanche..." onkeyup="filterMenu()">
+            </div>
+
+            <div class="categories">
+                <button id="btn-todos" class="cat-btn active" onclick="filterCategory('todos', this)">Todos</button>
+                <button id="btn-burgers" class="cat-btn" onclick="filterCategory('burgers', this)">Hambúrgueres</button>
+                <button id="btn-dogs" class="cat-btn" onclick="filterCategory('dogs', this)">Buffet & Dogs</button>
+                <button id="btn-porcoes" class="cat-btn" onclick="filterCategory('porcoes', this)">Porções</button>
+                <button id="btn-bebidas" class="cat-btn" onclick="filterCategory('bebidas', this)">Bebidas</button>
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+                </div>
+        </section>
+
+        <section id="about-section" class="hidden" style="padding-top: 20px;">
+            <div class="about-card">
+                <h2 style="color: var(--primary-orange); margin-bottom: 10px;">Barthô Burger</h2>
+                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 20px;">
+                    Lanches artesanais, porções generosas e o famoso Buffet de Hot Dog Livre. 
+                    Qualidade e sabor no coração de Guaratuba.
+                </p>
+                
+                <div style="text-align: left; margin-top: 20px;">
+                    <p>📍 <strong>Endereço:</strong><br>R. Vieira dos Santos, 343 - Centro, Guaratuba - PR</p>
+                    <br>
+                    <p>⏰ <strong>Horário:</strong><br>Seg a Dom: 18h às 23h55</p>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.278606030485!2d-48.5756008!3d-25.8811981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94db85950135bc9f%3A0x87c894e13795b062!2sBarth%C3%B4%20Burger%20%26%20Food!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <button onclick="window.open('https://wa.me/5541999637955', '_blank')" style="width:100%; margin-top:20px; padding:15px; background-color:#25D366; color:white; border-radius:10px; font-weight:bold;">
+                    Falar no WhatsApp
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="navigateTo('home-section'); updateNav(this)">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Início</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('menu-section'); updateNav(this)">
+            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+            <span>Cardápio</span>
+        </div>
+        <div class="nav-item" onclick="openCart()">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span>Carrinho</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('about-section'); updateNav(this)">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Local</span>
+        </div>
+    </nav>
+
+    <div id="cart-modal" class="modal hidden" onclick="if(event.target === this) closeCart()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Seu Pedido</h3>
+                <button class="close-modal" onclick="closeCart()">✕</button>
+            </div>
+            
+            <div id="cart-items-container" class="cart-items">
+                <p style="text-align: center; color: #666; margin-top: 20px;">Seu carrinho está vazio.</p>
+            </div>
+
+            <div class="checkout-form">
+                <div class="delivery-toggle">
+                    <div id="opt-delivery" class="toggle-opt active" onclick="setDeliveryMode('delivery')">Entrega (+R$ 5,00)</div>
+                    <div id="opt-pickup" class="toggle-opt" onclick="setDeliveryMode('pickup')">Retirar no Balcão</div>
+                </div>
+
+                <div id="address-fields">
+                    <input type="text" id="client-name" placeholder="Seu Nome" required>
+                    <input type="text" id="client-address" placeholder="Endereço (Rua, Número, Bairro)" required>
+                    <input type="text" id="client-obs" placeholder="Observações (ex: Sem cebola)">
+                </div>
+            </div>
+
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+
+            <button class="btn-whatsapp" onclick="finalizeOrder()">
+                <span>Enviar Pedido no WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

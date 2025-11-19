@@ -1,0 +1,589 @@
+/* =========================================
+   RESET E VARIÁVEIS (TEMA BARTHÔ: DARK NEON)
+   ========================================= */
+:root {
+    /* --- PALETA BARTHÔ --- */
+    --bg-dark: #121212;       /* Fundo Principal */
+    --bg-card: #1F1F1F;       /* Fundo dos Cards */
+    --primary-orange: #FF9F1C; /* Laranja Cheddar (Destaque Principal) */
+    --accent-purple: #8A2BE2;  /* Roxo Neon (Detalhes/Bordas) */
+    --text-white: #FFFFFF;    /* Texto Principal */
+    --text-gray: #B0B0B0;     /* Texto Secundário */
+
+    /* --- MAPEAMENTO PARA O LAYOUT ANTIGO --- */
+    --cor-fundo: var(--bg-dark);
+    --cor-branca: var(--bg-card); /* O que era branco agora é cinza chumbo */
+    
+    --cor-primaria: var(--primary-orange); /* Títulos agora são laranja */
+    --cor-texto: var(--text-white);        /* Texto agora é branco */
+    --cor-texto-suave: var(--text-gray);
+    
+    --cor-destaque: var(--accent-purple);  /* Detalhes secundários em roxo */
+    --cor-destaque-hover: #6916b3;         /* Roxo mais escuro */
+
+    --borda-suave: 1px solid #333333;
+    
+    /* Tipografia */
+    --fonte-titulo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Mudamos para fonte mais moderna */
+    --fonte-corpo: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --sombra-suave: 0 4px 10px rgba(0, 0, 0, 0.5);
+    --sombra-hover: 0 10px 20px rgba(138, 43, 226, 0.2); /* Sombra roxa neon */
+    --transicao: all 0.3s ease;
+    --container: 1100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-corpo);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fonte-titulo);
+    color: var(--text-white); /* Títulos em branco para contraste */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transicao);
+}
+
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+section { padding: 5rem 1.5rem; }
+
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Botões Coloridos */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-orange); /* Laranja */
+    color: #000; /* Texto preto no laranja para contraste */
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px; /* Botões mais redondos estilo app */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicao);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(255, 159, 28, 0.2);
+}
+
+.btn:hover {
+    background-color: #ffb042;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 159, 28, 0.4); /* Glow laranja */
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--accent-purple);
+    color: var(--accent-purple);
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-purple);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.4); /* Glow roxo */
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+header {
+    background-color: rgba(18, 18, 18, 0.95); /* Fundo escuro */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.8rem;
+    color: var(--primary-orange);
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 159, 28, 0.2);
+}
+
+.logo span {
+    color: var(--accent-purple); /* Detalhe em roxo */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    position: relative;
+    text-transform: uppercase;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-orange);
+    transition: var(--transicao);
+}
+
+.nav-links a:hover {
+    color: var(--text-white);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar {
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-orange);
+    transition: var(--transicao);
+    border-radius: 2px;
+}
+
+/* =========================================
+   HERO SECTION (DARK)
+   ========================================= */
+.hero {
+    height: 90vh;
+    min-height: 600px;
+    /* Overlay escuro para o tema dark */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(18, 18, 18, 1)), url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
+    /* Troquei a URL para uma foto de Hamburguer para combinar, se quiser manter a de pão, pode voltar */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 3rem;
+    animation: fadeInUp 1s ease-out;
+    background: rgba(31, 31, 31, 0.6); /* Fundo semi-transparente escuro */
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    border: 1px solid rgba(138, 43, 226, 0.3); /* Borda roxa sutil */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    color: #e0e0e0;
+}
+
+/* =========================================
+   SERVIÇOS / DESTAQUES
+   ========================================= */
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-title h2 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-orange);
+}
+
+.section-title p {
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--bg-card); /* Fundo cinza chumbo */
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--accent-purple); /* Borda roxa no hover */
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.5rem;
+}
+
+.card-content {
+    padding: 0 2rem 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    color: var(--text-white);
+}
+
+.card p {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* =========================================
+   CARDÁPIO DO DIA / DESTAQUE
+   ========================================= */
+.menu-section {
+    background-color: #1a1a1a; /* Um pouco mais claro que o fundo principal */
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.menu-board {
+    background-color: var(--bg-card);
+    color: #fff;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid var(--accent-purple);
+}
+
+/* Borda dupla neon */
+.menu-board::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px dashed rgba(255, 159, 28, 0.5); /* Laranja tracejado */
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+#menu-content {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    font-family: var(--fonte-titulo);
+    color: var(--text-white);
+}
+
+.menu-date {
+    font-size: 0.9rem;
+    color: #000;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    background: var(--primary-orange);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* =========================================
+   ORÇAMENTO / FORMULÁRIO
+   ========================================= */
+.form-container {
+    background-color: var(--bg-card);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--primary-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.9rem;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    background-color: #2a2a2a; /* Input escuro */
+    color: #fff;
+    transition: var(--transicao);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    background-color: #333;
+    box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* =========================================
+   RODAPÉ
+   ========================================= */
+footer {
+    background-color: #0a0a0a; /* Quase preto */
+    color: var(--text-gray);
+    padding: 5rem 1.5rem 2rem;
+    border-top: 1px solid #333;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #333;
+}
+
+.footer-col h4 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-orange);
+    bottom: -8px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.footer-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-gray);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icons a {
+    width: 42px;
+    height: 42px;
+    background-color: #2a2a2a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid #444;
+}
+
+.social-icons a:hover {
+    background-color: var(--accent-purple);
+    border-color: var(--accent-purple);
+    transform: translateY(-3px);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.admin-trigger {
+    color: #444;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.admin-trigger:hover { color: var(--primary-orange); }
+
+/* =========================================
+   ADMIN PANEL (MODAL) - ADAPTADO DARK
+   ========================================= */
+#admin-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.admin-content {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 50px;
+    color: var(--text-white);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+}
+
+/* =========================================
+   ANIMAÇÕES
+   ========================================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background-color: var(--bg-card); /* Fundo do menu mobile */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        transition: var(--transicao);
+        border-left: 1px solid #333;
+    }
+
+    .nav-links.active { right: 0; }
+
+    .hamburger { display: flex; }
+
+    .hero h1 { font-size: 2.8rem; }
+    .hero p { font-size: 1.1rem; }
+}

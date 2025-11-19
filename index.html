@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Barthô Burger - Lanchonete e Buffet Artesanal em Guaratuba.">
+    <title>Barthô Burger | O Melhor de Guaratuba</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Barthô <span>Burger</span></div>
+            
+            <nav class="nav-links" id="nav-links">
+                <a href="#inicio" onclick="toggleMenu()">Início</a>
+                <a href="#servicos" onclick="toggleMenu()">Destaques</a>
+                <a href="pedido/index.html" onclick="toggleMenu()">Cardápio</a>
+                <a href="#localizacao" onclick="toggleMenu()">Localização</a>
+                <a href="#contato" onclick="toggleMenu()">Contato</a>
+            </nav>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Barthô Burger</h1>
+            <p>Hambúrgueres artesanais, o famoso Buffet de Dog Livre e porções que dão água na boca. A melhor experiência de Guaratuba.</p>
+            <a href="pedido/index.html" class="btn">Fazer Pedido</a>
+        </div>
+    </section>
+
+    <section id="servicos" class="container">
+        <div class="section-title">
+            <h2>Nossas Delícias</h2>
+            <p>Qualidade artesanal e sabor inesquecível em cada mordida.</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Hambúrguer Artesanal com Cheddar" class="card-img">
+                <div class="card-content">
+                    <h3>Burgers Artesanais</h3>
+                    <p>Blend de carnes selecionadas, queijo derretendo e molhos especiais da casa.</p>
+                    <a href="pedido/index.html?cat=burgers" class="btn-outline">Ver Opções</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Buffet de Cachorro Quente" class="card-img">
+                <div class="card-content">
+                    <h3>Buffet Dog Livre</h3>
+                    <p>Monte do seu jeito! Buffet completo com diversos ingredientes à vontade.</p>
+                    <a href="pedido/index.html?cat=dogs" class="btn">Pedir Agora</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/card3.jpg" alt="Porção de Fritas com Bacon" class="card-img">
+                <div class="card-content">
+                    <h3>Porções Turbinadas</h3>
+                    <p>Fritas com cheddar e bacon, calabresa acebolada e muito mais para compartilhar.</p>
+                    <a href="pedido/index.html?cat=porcoes" class="btn">Cardápio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="localizacao" class="container" style="padding: 4rem 1rem;">
+        <div class="section-title">
+            <h2>Onde Estamos</h2>
+            <p>Venha curtir o ambiente ou peça no delivery.</p>
+        </div>
+        
+        <div class="map-wrapper" style="position: relative; width: 100%; height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 4px solid #333;">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                id="gmap_canvas" 
+                src="https://maps.google.com/maps?q=R.%20Vieira%20dos%20Santos,%20343%20-%20Centro,%20Guaratuba&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                frameborder="0" 
+                scrolling="no" 
+                marginheight="0" 
+                marginwidth="0"
+                style="filter: invert(90%) hue-rotate(180deg);"> </iframe>
+            
+            <div style="position: absolute; bottom: 20px; left: 20px; background: white; padding: 10px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-family: 'Roboto', sans-serif; color: #333;">
+                <strong>Barthô Burger</strong> <br> 
+                <span style="font-size: 0.85em; color: #666;">R. Vieira dos Santos, 343</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Barthô Burger</h4>
+                <p style="opacity: 0.9; line-height: 1.6;">
+                    O ponto de encontro mais saboroso de Guaratuba. Hambúrgueres, porções e o famoso buffet de dog.
+                </p>
+            </div>
+            <div class="footer-col footer-info">
+                <h4>Endereço</h4>
+                <p>R. Vieira dos Santos 343 - Centro</p>
+                <p>Guaratuba - PR (83280-000)</p>
+                
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/bartho.burger/" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+
+                    <a href="https://www.facebook.com/profile.php?id=100092713593594" target="_blank" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+
+                    <a href="https://wa.me/5541999637955?text=Ol%C3%A1%20Barth%C3%B4!%20Vim%20pelo%20site." target="_blank" aria-label="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col footer-info">
+                <h4>Horário de Atendimento</h4>
+                <p>Seg-Dom: 18:00h - 23:55h</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Barthô Burger & Food. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="admin-panel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h3>Administração</h3>
+                <button onclick="closeAdmin()" class="btn-outline" style="padding: 5px 10px;">X</button>
+            </div>
+            <label style="display:block; margin-bottom:10px;">Texto Promocional:</label>
+            <textarea id="admin-menu-text" class="form-control" style="height: 200px; margin-bottom: 1rem;"></textarea>
+            <button onclick="saveMenu()" class="btn">Atualizar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
