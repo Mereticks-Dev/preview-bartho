@@ -32,11 +32,10 @@ document.onkeydown = function(e) {
 const WHATSAPP_NUMBER = "5541999637955"; 
 const DELIVERY_FEE = 5.00; 
 
-// Caminho da imagem padrão (logo) - Volta um diretório (..) e entra em img
-const DEFAULT_IMAGE = "../img/logo.png"; 
+// Caminho da imagem padrão (logo)
+const DEFAULT_IMAGE = "logo.png"; 
 
 // LISTA DE PRODUTOS
-// IMPORTANTE: As imagens devem estar na pasta "img" na raiz do projeto
 const produtos = [
     // HAMBURGUERES
     { 
@@ -46,7 +45,7 @@ const produtos = [
         preco: 28.90, 
         desc: "Pão brioche, blend 180g, cheddar cremoso, bacon e cebola caramelizada.", 
         destaque: true,
-        img: null // Coloque o nome do arquivo real aqui
+        img: "bartho-burger.jpg" 
     },
     { 
         id: 2, 
@@ -55,7 +54,7 @@ const produtos = [
         preco: 24.90, 
         desc: "Pão, carne, queijo, bacon crocante e salada.", 
         destaque: false,
-        img: null // null = vai usar a logo
+        img: null 
     },
     { 
         id: 3, 
@@ -75,7 +74,7 @@ const produtos = [
         preco: 36.90, 
         desc: "Coma à vontade! Monte seu dog com todas as opções do buffet.", 
         destaque: true,
-        img: null
+        img: "buffet-dog.jpg" 
     },
     { 
         id: 5, 
@@ -104,7 +103,7 @@ const produtos = [
         preco: 32.00, 
         desc: "Porção generosa para compartilhar.", 
         destaque: true,
-        img: null
+        img: "fritas.jpg" 
     },
     { 
         id: 8, 
@@ -124,7 +123,7 @@ const produtos = [
         preco: 8.00, 
         desc: "Garrafa gelada.", 
         destaque: false,
-        img: null
+        img: "coca.jpg" 
     },
     { 
         id: 10, 
@@ -206,15 +205,13 @@ function renderMenu(category) {
     container.innerHTML = filtered.map(p => createCardHTML(p)).join('');
 }
 
-// HTML do Card de Produto (MODIFICADO PARA USAR IMAGEM)
+// HTML do Card de Produto
 function createCardHTML(produto) {
-    // Lógica: Se tiver produto.img, usa "../img/nome-da-foto". 
-    // Se for null ou vazio, usa DEFAULT_IMAGE ("../img/logo.png")
-    const imageUrl = produto.img ? `../img/${produto.img}` : DEFAULT_IMAGE;
+    const imagePath = produto.img ? produto.img : DEFAULT_IMAGE;
 
     return `
         <div class="product-card">
-            <div class="product-img" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
+            <div class="product-img" style="background-image: url('${imagePath}'); background-size: cover; background-position: center;"></div>
             <div class="product-info">
                 <div>
                     <h4>${produto.nome}</h4>
@@ -243,7 +240,7 @@ function filterMenu() {
     container.innerHTML = filtered.map(p => createCardHTML(p)).join('');
 }
 
-// Carrinho
+// --- AQUI ESTAVA O PROBLEMA, CORRIGIDO ABAIXO ---
 function addToCart(id) {
     const prod = produtos.find(p => p.id === id);
     const existing = cart.find(item => item.id === id);
@@ -257,13 +254,23 @@ function addToCart(id) {
     saveCart();
     updateCartCount();
 
-    const btn = event.target;
-    btn.style.backgroundColor = "var(--success)";
-    btn.innerText = "✓";
-    setTimeout(() => {
-        btn.style.backgroundColor = "";
-        btn.innerText = "+";
-    }, 1000);
+    // CORREÇÃO: Se o modal do carrinho estiver visível, atualiza a lista visualmente
+    const cartModal = document.getElementById('cart-modal');
+    if (!cartModal.classList.contains('hidden')) {
+        renderCartItems();
+    }
+
+    // Animação do botão (apenas se foi clicado no cardápio, não dentro do carrinho)
+    if(event && event.target && event.target.classList.contains('add-btn')) {
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.style.backgroundColor = "var(--success)";
+        btn.innerText = "✓";
+        setTimeout(() => {
+            btn.style.backgroundColor = "";
+            btn.innerText = originalText;
+        }, 1000);
+    }
 }
 
 function removeFromCart(id) {
@@ -274,7 +281,7 @@ function removeFromCart(id) {
         cart = cart.filter(i => i.id !== id);
     }
     saveCart();
-    renderCartItems();
+    renderCartItems(); // Isso já existia aqui, por isso o "-" funcionava
 }
 
 function saveCart() {
@@ -388,5 +395,4 @@ function finalizeOrder() {
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
-
 }
