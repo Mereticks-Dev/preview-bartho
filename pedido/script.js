@@ -1,4 +1,31 @@
 /* ================================================
+   PROTEÇÃO BÁSICA DO SITE
+   ================================================
+*/
+
+// Desabilitar Clique Direito
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Desabilitar Teclas de Atalho de Desenvolvedor
+document.onkeydown = function(e) {
+    // F12
+    if(e.keyCode == 123) {
+        return false;
+    }
+    // Ctrl+I (Inspecionar)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    // Ctrl+J (Console)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    // Ctrl+U (Ver Fonte)
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
+}
+/* ================================================
    CONFIGURAÇÕES PRINCIPAIS (EDITE AQUI)
    ================================================
 */
@@ -361,4 +388,5 @@ function finalizeOrder() {
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
+
 }
